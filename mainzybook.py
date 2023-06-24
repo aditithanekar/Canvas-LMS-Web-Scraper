@@ -2,24 +2,17 @@ import math
 import pandas as pd
 import csv
 #os library --for file input name
-zybooks_csv_file = 'section2zybooks/UCRCS010CSpring2023_Program_4_report_2023-06-20_2046.csv' #exported for all sections
-canvas_csv_file = 'canvasdata.csv'
+zybooks_csv_file = 'section2zybooks/UCRCS010CSpring2023_Program_4_report_2023-06-20_2046.csv' #change filename to zybooks csv report export
+canvas_csv_file = 'canvasdata.csv' #change this filename to the canvas file you're inputting to
 
-zybooks_data = pd.read_csv(zybooks_csv_file, usecols=['Primary email', 'Percent grade'])
+zybooks_data = pd.read_csv(zybooks_csv_file, usecols=['Primary email', 'Percent grade']) #take only necessary cols
 canvas_data = pd.read_csv(canvas_csv_file)
 
 point_total = 15
 
-
 def grade_calc(percent, denominator):
     return math.ceil((percent*denominator)/100)
 
- 
-# On zybook_csv there is School Email -- (netID until the @ delim)
-# map it to canvas_csv file -  column with SIS Login ID
-# then if key found-- then enter roundednum using grade_calc() into its columnIndex to input to 
-# the only columns you'll need: from zybooks -- School Email and Percent Grade
-# canvas columns you'll need: 
 
 for canvas_row in canvas_data.itertuples():
     sisloginID = canvas_row[3] #key to check mapping
