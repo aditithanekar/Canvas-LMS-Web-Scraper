@@ -28,7 +28,7 @@ All you need to do:
 4. Change the assignment name to the specific column from the Canvas .csv file you want to input into--
 5. Then run it!
 6. Your results will generate a file called canvasdata.csv
-7. To put it back into canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
+7. To put it back into Canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
 
 ## Using attendance.py (Google Sheets to Canvas)
 To export the Google Sheet properly, click File-> Download-> Comma Separated Values(.csv)
@@ -40,7 +40,7 @@ Now:
 3. Change the assignment name to the specific column from the Canvas .csv file you want to input into--
 4. Then run it!
 5. Your results will generate a file called demodata.csv
-6. To put it back into canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
+6. To put it back into Canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
 
 ## Using ceilmidterm.py (Canvas to Canvas)
 All you need to do:
@@ -49,10 +49,16 @@ All you need to do:
 2. Change the canvas_target_col value to the assignment name's column in Canvas
 3. Run it!
 4. Your results will generate a file called canvasdata.csv
-5. To put it back into canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
+5. To put it back into Canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
 
 ## Using gradescope.py (Gradescope to Canvas)
 After using this for a couple assignments I realized that I didn't need it because Gradescope has a button that can publish grades to Canvas, which is super cool!
 
-Regardless, if you end up using this...
+Regardless, if you end up using this...first export both the Canvas gradebook as well as a Gradescope file as .csv
 
+Then: 
+1. Change the filepath of the Canvas .csv file(canvas_csv_file)
+2. Change the filepath of the Gradescope .csv file(gradescope_csv_file)
+3. Change the assignment column name from Canvas which is your destination to map to
+4. Now run it, and you will generate a labquality.csv file
+5. To put it back into Canvas, you can click "Import" in the gradebook, and then upload the canvasdata.csv file you created, and it should fill in all the grades you just mapped in!
