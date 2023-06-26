@@ -22,9 +22,9 @@ This takes in a csv file from zybooks -- you can use the reporting feature on Zy
 It maps an SISLoginID on Canvas to the netid preceding the @ delimiter on the School Email column to find the student.
 
 All you need to do:
-1. Change the filepath of the Canvas .csv file
-2. Change the filepath of the Zybooks .csv file
-3. Change the point total as needed
+1. Change the filepath of the Canvas .csv file(canvas_csv_file)
+2. Change the filepath of the Zybooks .csv file(zybooks_csv_file)
+3. Change the point total as needed(point_total)
 4. Change the assignment name to the specific column from the Canvas .csv file you want to input into--
 5. Then run it!
 6. Your results will generate a file called canvasdata.csv
