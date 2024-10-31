@@ -5,10 +5,11 @@ import pandas as pd
 zybooks_csv_file = 'UCRCS010CMillerFall2023_report_2023-12-15_1217_PST.csv' #change filename to zybooks csv report export
 canvas_csv_file = 'canvasdata.csv' #change this filename to the canvas file you're inputting to
 
-zybooks_data = pd.read_csv(zybooks_csv_file, usecols=['Primary email','School email', '2.28 - Lab (10)']) #take only necessary cols
+zybooks_data = pd.read_csv(zybooks_csv_file, usecols=['Primary email','School email', 'Participation total (117)', 'Challenge total (20)']) #take only necessary cols
 canvas_data = pd.read_csv(canvas_csv_file)
 
-point_total = 10
+reading_total = 117
+challenge_total = 20
 
 def grade_calc(percent, denominator):
     return math.ceil((percent*denominator)/100)
@@ -16,8 +17,8 @@ def grade_calc(percent, denominator):
 
 for canvas_row in canvas_data.itertuples():
     sisloginID = canvas_row[3] #key to check mapping
-    rounded_num = 0 
-    #num2 = 0
+    reading_points = 0 
+    challenge_points = 0
     
     for zyrow in zybooks_data.itertuples():
         
@@ -33,24 +34,24 @@ for canvas_row in canvas_data.itertuples():
         elif(netid=='kaylatran201'):
             netid = netid.replace('kaylatran201', 'ktran369')
         
-        print(netid)
+        #print(netid)
         if(str(netid).lower() == str(sisloginID).lower()):
-            if(pd.isnull(zyrow[3])):
-                rounded_num=0
-            else:
-                rounded_num = grade_calc(zyrow[3],point_total) #zybooks col 2 has percent grade
-            #num2 = grade_calc(zyrow[4],point_total)
+            reading_points = grade_calc(zyrow[3],reading_total)
+            challenge_points = grade_calc(zyrow[4], challenge_total)
+            #print(reading_points)
+            #grade_calc(zyrow[3],point_total) #zybooks col 2 has percent grade
             
             
     #you have to change the assignment column value when you change the assignment or section-
-    #section 1lab5 = 'Lab 5 Zybook (610485)' Lab 7 Zybook (619232),Lab 8 Zybook (619233),Lab 9 Zybook (619234),Program 3 Zybook (619235),Program 4 Zybook (619236),Program 2 Zybook (619237)
+    reading_name = 'Chapter 8 Readings (619603)'
+    challenge_name = 'Chapter 8 Challenges (619604)'
+    if(pd.isnull(canvas_data.loc[canvas_row[0], reading_name])):
+        canvas_data.loc[canvas_row[0], [reading_name]] = [reading_points] #canvas_row[0] are indices of rows
+        print("read")
+
+    if(pd.isnull(canvas_data.loc[canvas_row[0], challenge_name])):
+        canvas_data.loc[canvas_row[0], [challenge_name]] = [challenge_points] #canvas_row[0] are indices of rows
+        print("hi")
     
-    #section 2: Lab 5 Zybook (610487),Lab 6 Zybook  (610488),Lab 7 Zybook (619238),Lab 8 Zybook (619239),Lab 9 Zybook (619240),Program 3 Zybook (619241),Program 4 Zybook (619242),Program 2 Zybook (619243)
-    
-    lab6 ='Program 1 Zybook (619610)'
-    #if(pd.isnull(canvas_data.loc[canvas_row[0], lab6])):
-    canvas_data.loc[canvas_row[0], [lab6]] = [rounded_num] #canvas_row[0] are indices of rows
-    #if(pd.isnull(canvas_data.loc[canvas_row[0], lab6])):
-    #canvas_data.loc[canvas_row[0], [lab6]] = [num2]
 #this is what's there for export after the changes have been made
 canvas_data.to_csv('canvasdata.csv', index=False)
