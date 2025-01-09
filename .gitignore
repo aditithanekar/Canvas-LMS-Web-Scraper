@@ -1,3 +1,4 @@
-/done
-/in-the-works
-canvasdata.csv
+*.out
+*.csv
+
+.DS_STORE
