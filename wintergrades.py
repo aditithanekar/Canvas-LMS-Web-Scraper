@@ -111,10 +111,9 @@ for canvas_row in canvas_data.itertuples():
             netid = str(zyrow[1]).split('@',1) # if null, use Primary email col
         netid = netid[0]
         
-        if(netid=='devin.phung'):
-            netid = netid.replace('devin.phung', 'dphun009')
-        elif(netid=='jpate'):
-            netid = netid.replace('jpate', 'jpate135')
+        # how to take care of data that is unclean manually:
+        # if(netid=='emailaddressbefore the @ sign if it is a non netid address'):
+        #     netid = netid.replace('the non-netid email address', 'netid')
         
         
         print(netid)

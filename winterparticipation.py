@@ -1,3 +1,4 @@
+# Aditi Thanekar :) - Updated 2023 -> 2024
 import math
 import pandas as pd
 import re
@@ -105,8 +106,9 @@ class canvasGradebook:
         
 
 
-#os library --for file input name
-zybooks_csv_file = 'ch10.csv' #change filename to zybooks csv report export
+# THESE 2 lines are the only 2 lines you need to change!!
+# Download a score report from Zybooks and Export Entire Gradebook from Canvas and set these 2 .csv paths
+zybooks_csv_file = 'zybch10.csv' #change filename to zybooks csv report export
 canvas_csv_file = 'canvasdata.csv' #change this filename to the canvas file you're inputting to
 
 zybooks = zybookDownload(zybooks_csv_file)
@@ -142,34 +144,34 @@ for canvas_row in canvas_data.itertuples():
     for zyrow in zybooks_data.itertuples():
         
         netid = str(zyrow[2]).split('@',1) #getting netid from zybooks col 1(School email)
-        #print(str(zyrow[1]))
+        
+        #check for nan spots
         if(netid[0] == "nan"):
             netid = str(zyrow[1]).split('@',1) # if null, use Primary email col
         netid = netid[0]
         
 
-        if(netid=='devin.phung'):
-            netid = netid.replace('devin.phung', 'dphun009')
-        elif(netid=='jpate'):
-            netid = netid.replace('jpate', 'jpate135')
+        # how to take care of data that is unclean manually:
+        # if(netid=='emailaddressbefore the @ sign if it is a non netid address'):
+        #     netid = netid.replace('the non-netid email address', 'netid')
         
-        #print(netid)
+
         if(str(netid).lower() == str(sisloginID).lower()):
             reading_points = grade_calc(zyrow[3],reading_total)
             challenge_points = grade_calc(zyrow[4], challenge_total)
-            #grade_calc(zyrow[3],point_total) #zybooks col 2 has percent grade
             
             
     #you have to change the assignment column value when you change the assignment or section-
     reading_name = canvas.find_reading(zybooks.chapter())
     challenge_name = canvas.find_challenge(zybooks.chapter())
+    
+    #only uncomment the 2 .isnull() calls if you want to write to the spots that are empty ONLY for some reason.
     #if(pd.isnull(canvas_data.loc[canvas_row[0], reading_name])):
     canvas_data.loc[canvas_row[0], [reading_name]] = [reading_points] #canvas_row[0] are indices of rows
-    print("read")
 
     #if(pd.isnull(canvas_data.loc[canvas_row[0], challenge_name])):
     canvas_data.loc[canvas_row[0], [challenge_name]] = [challenge_points] #canvas_row[0] are indices of rows
-    print("hi")
     
+#the file that gets written to is ALWAYS canvasdata.csv, a new file is not created every time    
 #this is what's there for export after the changes have been made
 canvas_data.to_csv('canvasdata.csv', index=False)

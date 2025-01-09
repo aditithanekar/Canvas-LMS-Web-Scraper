@@ -2,8 +2,8 @@ import math
 import pandas as pd
 
 #os library --for file input name
-zybooks_csv_file = 'UCRCS010CMillerFall2023_report_2023-12-15_1217_PST.csv' #change filename to zybooks csv report export
-canvas_csv_file = 'canvasdata.csv' #change this filename to the canvas file you're inputting to
+zybooks_csv_file = 'UCRCS010CMillerFall2024_report_2024-10-31_0012_PDT.csv' #change filename to zybooks csv report export
+canvas_csv_file = '2024-10-31T0014_Grades-CS_010C_001_24F.csv' #change this filename to the canvas file you're inputting to
 
 zybooks_data = pd.read_csv(zybooks_csv_file, usecols=['Primary email','School email', '2.28 - Lab (10)']) #take only necessary cols
 canvas_data = pd.read_csv(canvas_csv_file)
@@ -27,11 +27,9 @@ for canvas_row in canvas_data.itertuples():
             netid = str(zyrow[1]).split('@',1) # if null, use Primary email col
         netid = netid[0]
         
-
-        if(netid=='benjamin.nguyen004'):
-            netid = netid.replace('benjamin.nguyen004', 'bnguy280')
-        elif(netid=='kaylatran201'):
-            netid = netid.replace('kaylatran201', 'ktran369')
+        # how to take care of data that is unclean manually:
+        # if(netid=='emailaddressbefore the @ sign if it is a non netid address'):
+        #     netid = netid.replace('the non-netid email address', 'netid')
         
         print(netid)
         if(str(netid).lower() == str(sisloginID).lower()):
