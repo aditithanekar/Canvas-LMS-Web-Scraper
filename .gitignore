@@ -1,8 +1,7 @@
-*.out
-*.csv
-
 .DS_STORE
 
 zybooks/
 canvas/
+outputs/
+
 __pycache__

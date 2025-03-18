@@ -26,19 +26,15 @@ class Zybooks:
     
     def get_participation(self):
         for column in self.df.columns:
-            m = re.search(r'Participation total [(](\d+)[)].*', column)
+            m = re.search(r'Points earned \(out of (\d+)\)', column)
+
             if m is not None:
                 return (m.group(0), int(m.group(1)))
 
     def get_challenges(self):
         for column in self.df.columns:
-            m = re.search(r'Challenge total [(](\d+)[)].*', column)
+            m = re.search(r'Points earned \(out of (\d+)\)', column)
+
             if m is not None:
                 return (m.group(0), int(m.group(1)))
-
-    # def point_total(self):
-    #     for column in self.df.columns:
-    #         colnames = re.search(r'Lab total [(](\d+)[)].*', column)
-    #         if colnames is not None:
-    #             return colnames.group(1)
 
