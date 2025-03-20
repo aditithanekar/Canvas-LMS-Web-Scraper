@@ -3,5 +3,6 @@
 zybooks/
 canvas/
 outputs/
+*.ipynb
 
 __pycache__
